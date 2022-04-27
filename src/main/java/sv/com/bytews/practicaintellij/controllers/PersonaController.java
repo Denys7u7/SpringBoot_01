@@ -34,9 +34,9 @@ public class PersonaController {
         return repository.findById(id);
     }
 
-    @PostMapping("/find")
-    private ResponseEntity<List<Persona>> findByName(@RequestBody String field) throws Exception{
-        return service.findByName(field);
+    @GetMapping("/find/{nombre}")
+    private ResponseEntity<List<Persona>> findByName(@PathVariable("nombre") String nombre) throws Exception{
+        return service.findByName(nombre);
     }
 
     @GetMapping("")

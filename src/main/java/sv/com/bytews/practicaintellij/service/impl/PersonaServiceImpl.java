@@ -39,9 +39,13 @@ public class PersonaServiceImpl implements PersonaService {
 
     @Override
     public ResponseEntity<List<Persona>> findByName(String fields) throws Exception {
-        JSONObject request = new JSONObject(fields);
-
-        if (request.isNull("apellido")){
+        //JSONObject request = new JSONObject(fields);
+        List<Persona> personaList = repository.findPersonaByNombre(fields);
+        if (personaList == null){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(personaList, HttpStatus.OK);
+        /*if (request.isNull("apellido")){
             List<Persona> personaList = repository.findPersonaByNombre(request.getString("nombre"));
             if (personaList == null){
                 return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -53,6 +57,6 @@ public class PersonaServiceImpl implements PersonaService {
                 return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
             }
             return new ResponseEntity<>(personaList, HttpStatus.OK);
-        }
+        }*/
     }
 }
