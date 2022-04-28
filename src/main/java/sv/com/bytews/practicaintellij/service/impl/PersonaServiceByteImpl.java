@@ -47,7 +47,7 @@ public class PersonaServiceByteImpl extends AbstractService implements PersonaSe
     public String pruebaRest(String nombre) throws JsonProcessingException {
 
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:8080/persona/find/" + nombre;
+        String url = "http://localhost:8085/persona/find/" + nombre;
         ResponseEntity<String> response
                 = restTemplate.getForEntity(url, String.class);
 
